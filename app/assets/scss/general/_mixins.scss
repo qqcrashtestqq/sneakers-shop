@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "sass:math";
+
+//MEDIA QUERIES
+$breakpoints: (
+  xs: 375,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1220,
+  xxl: 1440,
+);
+
+@mixin mq($width, $type: max) {
+  @if map.has-key($breakpoints, $width) {
+    $width: toRem(map.get($breakpoints, $width) - 0.2);
+
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@function toRem($px) {
+  $result: math.div($px, 16) * 1rem;
+
+  @return $result;
+}
+
+// prettier-ignore
+@function responsive($min-size, $max-size, $min-width: 375, $max-width: 1440) {
+  $min-size-rem:  toRem($min-size);
+  $max-size-rem:  toRem($max-size);
+  $min-width-rem: toRem($min-width);
+  $max-width-rem: toRem($max-width);
+
+  // Расчет slope без единиц
+  $slope: math.div(($max-size-rem - $min-size-rem), ($max-width-rem - $min-width-rem));
+
+  // Расчет y-axis-intersection
+  $y-axis-intersection: $min-size-rem - $min-width-rem * $slope;
+
+  // Возвращаем значение с использованием clamp
+  $return-value:
+    clamp(
+      #{$min-size-rem},
+      #{$y-axis-intersection} + #{$slope} * 100vw,
+      #{$max-size-rem}
+    );
+
+  @return $return-value;
+}
+
+// HIDE SCROLL
+@mixin hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// HOVER
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
