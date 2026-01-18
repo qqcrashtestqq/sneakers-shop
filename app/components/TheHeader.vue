@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { HEDER_MENU } from "~/constants";
+import { HEDER_MENU } from "@/constants";
 
 const statusBurgerMenu = ref(false);
 const statusMenu = ref(false);
@@ -31,7 +31,6 @@ function openBurger() {
           </li>
         </ul>
       </nav>
-
       <button
         class="header__burger"
         :class="{ active: statusBurgerMenu }"
@@ -46,7 +45,7 @@ function openBurger() {
 </template>
 
 <style lang="scss" scoped>
-@use "~/assets/scss/general/_mixins.scss" as *;
+@use "@/assets/scss/general/_mixins.scss" as *;
 
 .header {
   padding: responsive(24, 50) 0;
@@ -59,7 +58,7 @@ function openBurger() {
 
   &__logo {
     display: block;
-    width: responsive(100, 245);
+    width: responsive(200, 245);
   }
 
   &__list {
