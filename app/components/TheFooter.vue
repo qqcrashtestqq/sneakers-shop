@@ -29,7 +29,7 @@ import { FOOTER_MENU } from "@/constants";
 @use "@/assets/scss/general/_mixins.scss" as *;
 
 .footer {
-  padding: responsive(24, 50) 0;
+  padding: toRem(24) 0;
   background-color: var(--color-green);
 
   &__container {

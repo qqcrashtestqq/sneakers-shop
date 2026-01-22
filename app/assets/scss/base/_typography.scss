@@ -1,0 +1,6 @@
+@use "@/assets/scss/general/_mixins.scss" as *;
+
+.title {
+  font-weight: 700;
+  font-size: responsive(24, 32);
+}

@@ -1,5 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <main class="main">12312</main>
+  <main class="main">
+    <Catalog />
+  </main>
 </template>
